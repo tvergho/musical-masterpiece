@@ -1,0 +1,12 @@
+.text-prompt-display {
+  color: #3330D0; /* Choose a suitable color */
+  font-size: 24px; /* Adjust font size as needed */
+  text-align: center; /* Center align the text */
+  position: absolute;
+  bottom: 120px;
+  width: 50%;
+  font-family: 'Bad Script', cursive;
+  left: 50%; /* Center horizontally */
+  width: 70%;
+  transform: translate(-50%, 50%);
+}

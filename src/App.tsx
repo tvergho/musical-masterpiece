@@ -32,6 +32,9 @@ function App() {
     tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
     tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, tempCanvas.width, tempCanvas.height);
 
+    // Print new dimensions
+    console.log(`New dimensions: ${tempCanvas.width}x${tempCanvas.height}`);
+
     if (setText) setShowCanvas(false);
 
     for (let attempt = 1; attempt <= retries; attempt++) {
@@ -79,15 +82,21 @@ function App() {
   }, [error]);
 
   useEffect(() => {
+    // Fixes bug where the API needs to be called once when the app loads due to NGINX annoyingness
     startGenerating(false);
   }, []);
 
   useEffect(() => {
     if (showCanvas || showIntro) {
       stopGeneration();
+      setTextPrompt('');
       // Call this a couple more times, staggered
       setTimeout(() => stopGeneration(), 100);
       setTimeout(() => stopGeneration(), 2000);
+      setTimeout(() => stopGeneration(), 4000);
+      setTimeout(() => stopGeneration(), 5000);
+      setTimeout(() => stopGeneration(), 7500);
+      setTimeout(() => stopGeneration(), 10000);
     }
   }, [showCanvas, showIntro]);
 

@@ -6,6 +6,7 @@ import audioAnimationData from '../assets/audio.json';
 import loadingAnimationData from '../assets/loading.json';
 import DrawAgainButton from './buttons/DrawAgainButton';
 import WordCloud from './WordCloud';
+import TextPromptDisplay from './TextPromptDisplay';
 
 function GeneratedMusic({ setError, setShowCanvas, textPrompt }: { setError: (error: string) => void, setShowCanvas: (showCanvas: boolean) => void, textPrompt: string }) {
   const mediaSource = useRef(new MediaSource());
@@ -94,8 +95,6 @@ function GeneratedMusic({ setError, setShowCanvas, textPrompt }: { setError: (er
     }
   }, [textPrompt]);
 
-  console.log(extractedWords);
-
   return (
     <div className={`generated-music-container ${isPlaying ? 'height-restrict' : ''}`}>
       <h2>Here’s your Music Masterpiece....</h2>
@@ -105,7 +104,10 @@ function GeneratedMusic({ setError, setShowCanvas, textPrompt }: { setError: (er
         {isPlaying ? (
           <Lottie animationData={audioAnimationData} loop={true} />
         ) : (
-          <Lottie animationData={loadingAnimationData} loop={true} />
+          <>
+            <Lottie animationData={loadingAnimationData} loop={true} />
+            <TextPromptDisplay textPrompt={textPrompt} />
+          </>
         )}
       </div>
       
