@@ -1,0 +1,40 @@
+/* WordCloud.css */
+.word-cloud-container {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  pointer-events: none;  /* So that it doesn't interfere with other interactions */
+}
+
+.word-cloud-item {
+  font-size: 1.2rem;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.3);  /* Semi-transparent background */
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+
+/* Adjustments for variety in appearance */
+.word-cloud-item-0 {
+  transform: scale(1);
+}
+
+.word-cloud-item-1 {
+  transform: scale(0.8);
+}
+
+.word-cloud-item-2 {
+  transform: scale(1.2);
+}
+
+.word-cloud-item-3 {
+  transform: scale(0.9);
+}
+
+.word-cloud-item-4 {
+  transform: scale(1.1);
+}

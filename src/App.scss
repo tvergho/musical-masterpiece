@@ -1,0 +1,154 @@
+h1 {
+  color: #000000;
+  font-size: 1.8rem;
+  margin: 0;
+  margin-bottom: 20px;
+  font-family: 'Bad Script', cursive;
+}
+h2 {
+  color: #3330D0;
+  font-size: 5.0rem;
+  margin: 0;
+  font-family: 'Bad Script', cursive;
+}
+
+.generate-music-btn {
+  position: fixed;
+  bottom: 40%;
+  right: 40px;
+  z-index: 1000;
+
+  width: 180px; // Adjust the triangle width
+  height: 120px; // Adjust the triangle height
+  background-image: linear-gradient(to right, #7D3CF8, #584EF2);
+  clip-path: polygon(0 0, 100% 50%, 0 100%); // This will shape the div into a right-facing triangle
+
+  cursor: pointer; // Hand cursor for better UX
+  transition: opacity 0.3s ease; // Smooth fade effect
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px; // Adjust as needed
+  color: white; // Text color
+  font-weight: bold;
+
+  padding-right: 80px;
+
+  &:hover {
+    opacity: 0.8; // Adds a fade effect on hover
+  }
+}
+
+.generated-music-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #E2E1F5;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+
+  .loading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .generating-text {
+    font-size: 18px;
+  }
+
+  h2 {
+    margin-top: 40px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.intro-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #E2E1F5;
+
+  .intro-content {
+    text-align: center;
+    display: flex;
+    width: 80%;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .intro-graphic {
+    max-width: 30vw;
+    margin-bottom: 20px;
+  }
+
+  .start-button {
+    padding: 20px 40px;
+    background-image: linear-gradient(to right, #7D3CF8, #584EF2);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    font-size: 24px; // Adjust as needed
+    color: white; // Text color
+    font-weight: bold;
+
+    &:hover {
+      opacity: 0.8; // Adds a fade effect on hover
+    }
+  }
+}
+
+.canvas-header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  pointer-events: none;
+
+  .canvas-graphic {
+    max-width: 15vw;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}
+
+.draw-canvas {
+  background-image: url('./assets/background-notes.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 85% 85%;
+}
+
+.height-restrict {
+  svg {
+    width: 600px !important;
+    height: 600px !important;
+  }
+}
+
+.generated-graphic {
+  width: 20vw;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}

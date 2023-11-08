@@ -1,0 +1,32 @@
+.draw-again-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  .replay-icon {
+    width: 80% !important;
+    height: 80% !important;
+  }
+}
+
+.circle {
+  background-color: #000;
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+}
+
+.replay-icon {
+  color: #9b51a0;
+  top: -25px;
+  right: -10px;
+  position: absolute;
+}
