@@ -17,7 +17,7 @@ const WordCloud = ({ words }: { words: string[] }) => {
   const wordWidth = 300;
   const wordHeight = 200;
   const overlap = 100;  // Allow for 30px overlap
-  const maxAttempts = 1000;
+  const maxAttempts = 20000;
 
   const [placedWords, setPlacedWords] = useState<WordData[]>([]);
 
@@ -62,7 +62,8 @@ const WordCloud = ({ words }: { words: string[] }) => {
       if (attempts > maxAttempts) {
         // If maximum attempts are exceeded, you can either skip this word or
         // place it at a default position. Here, we are returning a random position instead.
-        return { x: Math.random() * 100, y: Math.random() * 100, width: wordWidth, height: wordHeight, rotate: 0 }
+        console.log('Maximum attempts exceeded');
+        return { x: Math.random() * 85, y: Math.random() * 85, width: wordWidth, height: wordHeight, rotate: 0 }
       }
 
     } while (isTopExclusion || isCentralExclusion || collision || isXExclusion);

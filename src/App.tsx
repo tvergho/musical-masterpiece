@@ -94,7 +94,10 @@ function App() {
       setTextPrompt('');
       // Call this a couple more times, staggered
       timeouts.push(setTimeout(() => stopGeneration(), 100));
+      timeouts.push(setTimeout(() => stopGeneration(), 500));
+      timeouts.push(setTimeout(() => stopGeneration(), 1000));
       timeouts.push(setTimeout(() => stopGeneration(), 2000));
+      timeouts.push(setTimeout(() => stopGeneration(), 3000));
       timeouts.push(setTimeout(() => stopGeneration(), 4000));
       timeouts.push(setTimeout(() => stopGeneration(), 5000));
       timeouts.push(setTimeout(() => stopGeneration(), 7500));
@@ -102,9 +105,7 @@ function App() {
     }
 
     return () => {
-      if (!showCanvas && !showIntro) {
-        timeouts.forEach((timeout) => clearTimeout(timeout));
-      }
+      timeouts.forEach((timeout) => clearTimeout(timeout));
     };
   }, [showCanvas, showIntro]);
 
