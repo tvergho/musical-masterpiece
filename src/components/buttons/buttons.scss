@@ -1,4 +1,4 @@
-.draw-again-container {
+.draw-again-container, .icon-button-container {
   position: relative;
   width: 100px;
   height: 100px;
@@ -11,7 +11,7 @@
     filter: brightness(1.2);
   }
 
-  .replay-icon {
+  .replay-icon, .icon {
     width: 80% !important;
     height: 80% !important;
   }
@@ -24,9 +24,15 @@
   height: 80%;
 }
 
-.replay-icon {
+.replay-icon, .icon {
   color: #9b51a0;
   top: -25px;
   right: -10px;
   position: absolute;
+}
+
+.active {  
+  .replay-icon, .icon {
+    color: #fff;
+  }
 }
