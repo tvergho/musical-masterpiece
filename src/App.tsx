@@ -87,17 +87,25 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const timeouts: number[] = [];
+
     if (showCanvas || showIntro) {
       stopGeneration();
       setTextPrompt('');
       // Call this a couple more times, staggered
-      setTimeout(() => stopGeneration(), 100);
-      setTimeout(() => stopGeneration(), 2000);
-      setTimeout(() => stopGeneration(), 4000);
-      setTimeout(() => stopGeneration(), 5000);
-      setTimeout(() => stopGeneration(), 7500);
-      setTimeout(() => stopGeneration(), 10000);
+      timeouts.push(setTimeout(() => stopGeneration(), 100));
+      timeouts.push(setTimeout(() => stopGeneration(), 2000));
+      timeouts.push(setTimeout(() => stopGeneration(), 4000));
+      timeouts.push(setTimeout(() => stopGeneration(), 5000));
+      timeouts.push(setTimeout(() => stopGeneration(), 7500));
+      timeouts.push(setTimeout(() => stopGeneration(), 10000));
     }
+
+    return () => {
+      if (!showCanvas && !showIntro) {
+        timeouts.forEach((timeout) => clearTimeout(timeout));
+      }
+    };
   }, [showCanvas, showIntro]);
 
   if (showIntro) {

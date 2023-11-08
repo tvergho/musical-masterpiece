@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './WordCloud.scss';
 
 interface WordDimensions {
@@ -15,8 +16,17 @@ const WordCloud = ({ words }: { words: string[] }) => {
   // Constants for the word cloud images
   const wordWidth = 300;
   const wordHeight = 200;
-  const overlap = 75;  // Allow for 30px overlap
-  const placedWords: WordData[] = [];
+  const overlap = 100;  // Allow for 30px overlap
+  const maxAttempts = 1000;
+
+  const [placedWords, setPlacedWords] = useState<WordData[]>([]);
+
+  useEffect(() => {
+    const newPlacedWords: WordData[] = words.map(() => randomPosition());
+    setPlacedWords(newPlacedWords);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array ensures this runs only once
+
 
   // Function to generate a random position, accounting for the fixed dimensions and overlap
   const randomPosition = (): WordData => {
@@ -25,6 +35,7 @@ const WordCloud = ({ words }: { words: string[] }) => {
     let isTopExclusion: boolean;
     let isCentralExclusion: boolean;
     let isXExclusion: boolean;
+    let attempts = 0;
 
     do {
       xPos = Math.random() * (100 - ((wordWidth - overlap) / window.innerWidth * 100));
@@ -35,7 +46,7 @@ const WordCloud = ({ words }: { words: string[] }) => {
       isTopExclusion = yPos < 10 || yPos > 80;  // Top 30% exclusion
       isCentralExclusion = xPos > 25 && xPos < 60;  // Middle 30% exclusion
 
-      isXExclusion = xPos < 15 || xPos > 80;  // Left 10% and right 10% exclusion
+      isXExclusion = xPos < 10 || xPos > 80;  // Left 10% and right 10% exclusion
 
       // Check for collisions with already placed words
       collision = placedWords.some((placedWord) => {
@@ -46,6 +57,13 @@ const WordCloud = ({ words }: { words: string[] }) => {
           yPos < placedWord.y + (placedWord.height - overlap) / window.innerHeight * 100
         );
       });
+
+      attempts++;
+      if (attempts > maxAttempts) {
+        // If maximum attempts are exceeded, you can either skip this word or
+        // place it at a default position. Here, we are returning a random position instead.
+        return { x: Math.random() * 100, y: Math.random() * 100, width: wordWidth, height: wordHeight, rotate: 0 }
+      }
 
     } while (isTopExclusion || isCentralExclusion || collision || isXExclusion);
 
@@ -64,8 +82,8 @@ const WordCloud = ({ words }: { words: string[] }) => {
   
   return (
     <div className="word-cloud-container">
-      {words.map((word, index) => {
-        const { x, y, rotate } = randomPosition();
+      {placedWords.map((wordData, index) => {
+        const { x, y, rotate } = wordData;
         return (
           <div 
             className="word-cloud-item" 
@@ -76,7 +94,7 @@ const WordCloud = ({ words }: { words: string[] }) => {
               transform: `scale(${1 + index % 5 * 0.1}) rotate(${rotate}deg)` 
             }}
           >
-            <div>{word}</div>
+            <div>{words[index]}</div>
           </div>
         );
       })}

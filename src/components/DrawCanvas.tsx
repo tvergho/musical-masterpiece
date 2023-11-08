@@ -2,16 +2,17 @@ import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { ColorResult, GithubPicker } from 'react-color';
 import avatar from "../assets/avatar.png";
 import IconButton from './buttons/IconButton';
-import EraserIcon from '@mui/icons-material/LayersClear';
+import Eraser from '../assets/eraser.svg';
 import CreateIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Delete';
+import EraserIcon from './buttons/EraserIcon';
 
 function DrawCanvas({ canvasRef, startGenerating }: { canvasRef: React.RefObject<HTMLCanvasElement>, startGenerating: () => void }) {
   const [isDrawing, setIsDrawing] = useState(false);
   const [lineColor, setLineColor] = useState('#3330D0');
   const [lineWidth, setLineWidth] = useState(5);
   const [eraserEnabled, setEraserEnabled] = useState(false);
-  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(true);
   const colorPickerRef = useRef<HTMLInputElement>(null);
 
   // Function to handle color change
@@ -172,7 +173,7 @@ function DrawCanvas({ canvasRef, startGenerating }: { canvasRef: React.RefObject
         </div>
       )}
       <IconButton
-        icon={EraserIcon}
+        icon={() => <EraserIcon className="icon eraser-icon" />}
         style={{ position: 'absolute', right: '60px', top: '200px' }}
         onClick={toggleEraser}
         className={eraserEnabled ? 'active' : ''} // Highlight the eraser button when active

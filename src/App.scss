@@ -84,6 +84,7 @@ h2 {
   height: 100vh;
   width: 100vw;
   background-color: #E2E1F5;
+  position: relative;
 
   .intro-content {
     text-align: center;
@@ -113,6 +114,17 @@ h2 {
       opacity: 0.8; // Adds a fade effect on hover
     }
   }
+}
+
+.intro-screen::after {
+  content: ''; /* This is necessary to generate a pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 480px;
+  background-image: url('./assets/beats.gif');
+  background-repeat: repeat-x;
 }
 
 .canvas-header {
@@ -151,4 +163,8 @@ h2 {
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+.loading-avatar {
+  max-height: 70vh;
 }

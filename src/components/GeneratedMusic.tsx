@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Lottie from "lottie-react";
 import * as API from '../api';
 import avatar from '../assets/avatar.png';
+import animatedAvatar from '../assets/avatar-animated.gif';
 import audioAnimationData from '../assets/audio.json';
 import loadingAnimationData from '../assets/loading.json';
 import DrawAgainButton from './buttons/DrawAgainButton';
@@ -15,6 +16,7 @@ function GeneratedMusic({ setError, setShowCanvas, textPrompt }: { setError: (er
   const [isGenerating, setIsGenerating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [extractedWords, setExtractedWords] = useState<string[]>([]);
+  const [isBuffering, setIsBuffering] = useState(false);
 
   const startAudioGeneration = useCallback(() => {
     setIsGenerating(true);
@@ -60,6 +62,10 @@ function GeneratedMusic({ setError, setShowCanvas, textPrompt }: { setError: (er
           if (bufferEnd - bufferStart > 60) { // Define a suitable threshold
             sourceBuffer.current.remove(bufferStart, bufferStart + 10); // Define how much duration to remove
           }
+
+          const currentTime = audioElement.current.currentTime;
+          // Set buffering state based on buffer status
+          setIsBuffering(currentTime >= bufferEnd - 0.2); // Adjust threshold as needed
         }
       }, 1000);
 
@@ -98,14 +104,14 @@ function GeneratedMusic({ setError, setShowCanvas, textPrompt }: { setError: (er
   return (
     <div className={`generated-music-container ${isPlaying ? 'height-restrict' : ''}`}>
       <h2>Here’s your Music Masterpiece....</h2>
-      <img src={avatar} alt="Avatar" className="generated-graphic" />
+      {isPlaying && <img src={avatar} alt="Avatar" className="generated-graphic" />}
 
-      <div style={{ margin: 'auto' }}>
+      <div style={isPlaying ? { margin: 'auto' } : undefined}>
         {isPlaying ? (
-          <Lottie animationData={audioAnimationData} loop={true} />
+          (isBuffering ? <Lottie animationData={loadingAnimationData} loop={true} /> : <Lottie animationData={audioAnimationData} loop={true} />)
         ) : (
           <>
-            <Lottie animationData={loadingAnimationData} loop={true} />
+            <img src={animatedAvatar} className="loading-avatar" />
             <TextPromptDisplay textPrompt={textPrompt} />
           </>
         )}
