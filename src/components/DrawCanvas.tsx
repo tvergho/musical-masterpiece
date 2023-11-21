@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { ColorResult, GithubPicker } from 'react-color';
 import avatar from "../assets/avatar.png";
 import IconButton from './buttons/IconButton';
-import Eraser from '../assets/eraser.svg';
 import CreateIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Delete';
 import EraserIcon from './buttons/EraserIcon';

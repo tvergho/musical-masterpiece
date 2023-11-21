@@ -116,7 +116,7 @@ h2 {
   }
 }
 
-.intro-screen::after {
+.intro-screen::after, .generated-music-container::after {
   content: ''; /* This is necessary to generate a pseudo-element */
   position: absolute;
   left: 0;

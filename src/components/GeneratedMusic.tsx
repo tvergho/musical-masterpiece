@@ -111,8 +111,7 @@ function GeneratedMusic({ setError, setShowCanvas, textPrompt }: { setError: (er
           (isBuffering ? <Lottie animationData={loadingAnimationData} loop={true} /> : <Lottie animationData={audioAnimationData} loop={true} />)
         ) : (
           <>
-            <img src={animatedAvatar} className="loading-avatar" />
-            <TextPromptDisplay textPrompt={textPrompt} />
+            {textPrompt.length > 0 ? <TextPromptDisplay textPrompt={textPrompt} /> : <img src={animatedAvatar} className="loading-avatar" />}
           </>
         )}
       </div>
