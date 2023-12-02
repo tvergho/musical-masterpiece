@@ -1,6 +1,12 @@
-# Musical Masterpiece Dashboard
+<div align="center">
+  <img src="assets/dashboard.png" alt="Musical Masterpiece Dashboard" width="500px" />
+  <br/>
+</div>
 
+# Musical Masterpiece Dashboard
 This is an interactive dashboard application that was built as part of a human-computer interaction study at Dartmouth. It can interpret user's drawings and translate them into an endless stream of music.
+
+For more details, see our [research paper](assets/paper.pdf) and [demo video](https://www.youtube.com/watch?v=47qLH5-o5EY).
 
 ## Installation
 
