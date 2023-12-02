@@ -4,7 +4,7 @@
 </div>
 
 # Musical Masterpiece Dashboard
-This is an interactive dashboard application that was built as part of a human-computer interaction study at Dartmouth. It can interpret user's drawings and translate them into an endless stream of music.
+This is an interactive dashboard application that was built as part of a human-computer interaction study at Dartmouth. It can interpret user's drawings and translate them into an endless stream of music. This interactive interface allows students to express emotions through drawings, offering a unique fusion of art creation and music generation leveraging advanced AI technologies.
 
 For more details, see our [research paper](assets/paper.pdf) and [demo video](https://www.youtube.com/watch?v=47qLH5-o5EY).
 
@@ -44,7 +44,7 @@ cd backend
 python musicgen.py
 ```
 
-Note that this will download a rather large model the first time the script is run. By default, the script will use the `musicgen-stereo-large` model.
+Note that this will download a rather large model the first time the script is run. By default, the script will use the `musicgen-stereo-large` model, open-sourced by Meta and available on the HuggingFace Hub [here](https://huggingface.co/facebook/musicgen-stereo-large). 
 
 **Image-to-text:**
 There are two ways to run the image-to-text model. You can either use a local model that's compatible with `llama.cpp`, or use the OpenAI GPT-4V API if you have an account with access (and a corresponding API key). A good local model to use is [BakLLaVA](https://huggingface.co/mys/ggml_bakllava-1), quantized to Q5_KM. You can follow the instructions in the `llava-cpp-server` README to download and get set up.
